@@ -1,6 +1,0 @@
-$ docker search pull_exercise
-
-https://hub.docker.com/r/devopsdockeruh/pull_exercise
-
-Secret message is:
-"This is the secret message"

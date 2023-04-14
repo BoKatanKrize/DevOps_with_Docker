@@ -1,2 +1,2 @@
 # DevOps_with_Docker
-Docker and container orchestration using Docker Compose.
+Exercises from Part 1 of the course.
