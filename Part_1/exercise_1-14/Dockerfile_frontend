@@ -1,0 +1,29 @@
+# Specify the node base image (version 16)
+FROM node:16
+
+# Application's port
+EXPOSE 5000
+
+WORKDIR /usr/src/app
+
+# Copy everything to container
+COPY . .
+
+# Check node install
+RUN node -v && npm -v
+# Install all packages
+RUN npm install
+# Configure API path run
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+# Build the static files
+RUN npm run build
+# Install serve package 
+RUN npm install -g serve
+
+# Serve the project in port 5000
+ENTRYPOINT ["serve", "-s", "-l", "5000", "build"]
+
+
+# Build container : docker build . -t example-frontend
+# Run container : docker run -p 5000:5000 example-frontend 
+
