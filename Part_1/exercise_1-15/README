@@ -1,0 +1,10 @@
+"youtube-dl"
+
+Download a video given as URL. It only works with imgurl.com. 
+
+Run (with example) :
+
+docker run youtube-dl https://imgur.com/gallery/iT3U4K4
+
+Link to the project in Docker Hub:
+hub.docker.com/r/bokatankryze/youtube-dl
