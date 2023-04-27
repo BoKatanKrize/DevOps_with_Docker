@@ -1,0 +1,13 @@
+version: '3.8'   # --- Compose file format. Just informative. It can be omitted.
+
+services:        # --- Only means you declare your services (which are your containers)
+
+    youtube-dl-ubuntu:   # --- This is your service ID (you can put whatever you want here)
+      container_name: youtube-dl       # --- It's the name of the container
+      image: youtube-dl:latest         # --- It's the name of the image
+      build: .                         # --- Path to Dockerfie
+      volumes:                         # --- Volume section (container to local)
+        - .:/mydir                     # --- (pwd) from local to /mydir of the container
+
+# Run a one-off command on a service:
+# docker compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr

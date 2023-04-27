@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+    simple-web-service:
+      image: devopsdockeruh/simple-web-service
+      container_name: simple-web-service
+      # build: image from Docker Hub, no need to build on a Dockerfile
+      volumes:
+        - type: bind
+          source: ./text.log
+          target: /usr/src/app/text.log
+
+# Run:
+# docker compose up
