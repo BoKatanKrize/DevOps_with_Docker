@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+    simple-web-service:
+      image: devopsdockeruh/simple-web-service
+      container_name: simple-web-service
+      command: server
+      ports:
+        - 8000:8080
+
+# Run:
+# docker compose up
+#   - Open in browser 'localhost:8000'
+#   - Message should be 'message: "You connected to...'
