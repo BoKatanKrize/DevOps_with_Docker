@@ -13,3 +13,4 @@ services:
 
 # Run:
 # docker compose up
+# ^ It will start/restart all the services defined in compose.yaml
