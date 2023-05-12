@@ -11,3 +11,16 @@ services:        # --- Only means you declare your services (which are your cont
 
 # Run a one-off command on a service:
 # docker compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
+# ^ unless you want to override a command or running only one container 
+#   on different ports, "docker-compose up" (even for one container) is enough.
+
+
+# Your Docker workflow should be to build a suitable Dockerfile for each image
+# you wish to create, then use compose to assemble the images using the build 
+# command. 
+
+# Docker Compose will use the Dockerfile if you add the build command to your 
+# project's compose.yaml. If your compose.yaml uses a public image (pulling 
+# image from the docker hub), then you don't need a Dockerfile
+
+
