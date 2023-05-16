@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+
+    example-frontend:
+      image: example-frontend:latest
+      container_name: example-frontend
+      build: ./example-frontend
+      ports:
+        - 5000:5000
+
+    example-backend:
+      image: example-backend:latest
+      container_name: example-backend
+      build: ./example-backend
+      ports:
+        - 8080:8080
+      environment:    # --> This tells backend service to connect to Redis & Postgres
+        - REDIS_HOST=redis
+        - POSTGRES_HOST=postgres
+        - POSTGRES_USER=${POSTGRES_USER}          # --> will be replaced with the corresponding
+        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}  #     values defined in the postgres service
+        - POSTGRES_DATABASE=${POSTGRES_DB}        #     environment
+      depends_on:     # --> Ensure that redis & postgres start before the backend
+        - redis
+        - postgres
+    
+    redis:
+      image: redis
+    
+    postgres:
+      image: postgres
+      restart: unless-stopped
+      environment:
+        - POSTGRES_USER=postgres               # Default
+        - POSTGRES_PASSWORD=postgres           # Default
+        - POSTGRES_DB=postgres                 # Default
+
+# Run:
+# docker compose up
+#   - Go to "http://localhost:5000"
+#   - Press button of Exercise 2.6 
+#   - Clean containers: docker container prune 
+#   - Clean volumes: docker volume prune
+
+# REDIS_HOST has been added to Dockerfile of example-backend 
+
+# POSTGRES_HOST, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DATABASE
+# have been added to Dockerfile of example-backend 
+
+# The official postgres image sets a default volume for us
