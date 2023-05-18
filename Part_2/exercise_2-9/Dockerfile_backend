@@ -1,0 +1,23 @@
+FROM golang:1.16
+
+EXPOSE 8080
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+RUN go build
+RUN go test ./...
+
+ENV REQUEST_ORIGIN=http://localhost:5000
+
+ENTRYPOINT ["./server"]
+CMD PORT REQUEST_ORIGIN REDIS_HOST POSTGRES_HOST \
+    POSTGRES_USER POSTGRES_PASSWORD POSTGRES_DATABASE
+
+# Build container : docker build . -t example-backend
+# Run container : docker run -p 8080:8080 example-backend
+
+# REDIS_HOST has been added in Exercise 2.4
+# POSTGRES_HOST, POSTGRES_USER, POSTGRES_PASSWORD, and POSTGRES_DATABASE
+# have been added in Exercise 2.6
